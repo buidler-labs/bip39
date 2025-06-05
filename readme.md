@@ -17,21 +17,45 @@ Open the file in a browser by double clicking it.
 
 This can be compiled from source using the command `python compile.py`
 
-## Usage
+## Usage Guide
 
-Enter your BIP39 phrase into the 'BIP39 Phrase' field, or press
-'Generate Random Phrase'
+### 1. Enter or Generate a BIP39 Phrase
 
-If required, set the derivation path, although the defaults are quite usable.
+You have two options:
 
-Go to the "Coin" dropdown and select HBAR - Hedera to ensure the correct derivation settings are applied.
+- **Manually:** Paste your existing BIP39 phrase into the **"BIP39 Phrase"** input field.
+    ![alt text](image-1.png)
 
-See the table for a list of addresses generated from the phrase.
+- **Automatically:** Click the **"GENERATE"** button to create a new random mnemonic, **but before clicking "GENERATE"**, select how many words you want (e.g., 12, 15, 24).
+    ![alt text](image-2.png)
 
-Toggle columns to blank to easily copy/paste a single column of data, eg to
-import private keys into a wallet or supply someone with a list of addresses.
+---
+
+### 2. (Optional) Set the Derivation Path
+
+If needed, set a custom derivation path.  
+The default is usually sufficient (e.g., `m/44'/3030'/0'/0` for HBAR).
+
+---
+
+### 3. Select the HBAR Coin
+
+From the **“Coin”** dropdown, select **HBAR – Hedera** to ensure the correct derivation parameters are used.
+
+![alt text](image-3.png)
+
+---
+
+### 4. View Generated Addresses
+
+See the table below for a list of addresses derived from your BIP39 phrase, along with their corresponding public and private keys.
+
+![alt text](image-4.png)
+
 
 # License
+
+This work is built upon Ian Coleman's excelent work! 
 
 This BIP39 tool is released under the terms of the MIT license. See LICENSE for
 more information or see https://opensource.org/licenses/MIT.

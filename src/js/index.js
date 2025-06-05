@@ -1589,8 +1589,8 @@
     function showMore() {
         var rowsToAdd = parseInt(DOM.rowsToAdd.val());
         if (isNaN(rowsToAdd)) {
-            rowsToAdd = 20;
-            DOM.rowsToAdd.val("20");
+            rowsToAdd = 1;
+            DOM.rowsToAdd.val("1");
         }
         var start = parseInt(DOM.moreRowsStartIndex.val())
         if (isNaN(start)) {
@@ -1730,8 +1730,9 @@
             var option = $("<option>");
             option.attr("value", i);
             option.text(network.name);
-            if (network.name == "BTC - Bitcoin") {
+            if (network.name == "HBAR - Hedera") {
                 option.prop("selected", true);
+                network.onSelect();
             }
             DOM.phraseNetwork.append(option);
         }
@@ -2950,6 +2951,13 @@
             },
         },
         {
+            name: "HBAR - Hedera",
+            onSelect: function() {
+                network = libs.bitcoin.networks.bitcoin;
+                setHdCoin(3030);
+            },
+        },
+        {
             name: "HNS - Handshake",
             onSelect: function() {
                 setHdCoin(5353);
@@ -3783,14 +3791,7 @@
                 network = libs.bitcoin.networks.bitcoin;
                 setHdCoin(559);
             },
-              },
-        {
-            name: "HBAR - Hedera",
-            onSelect: function() {
-                network = libs.bitcoin.networks.bitcoin;
-                setHdCoin(3030);
-            },
-        },
+        }
     ]
 
     var clients = [
