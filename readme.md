@@ -11,7 +11,7 @@ A tool for converting BIP39 mnemonic phrases to addresses and private keys for H
 ## Standalone offline version
 
 Download `bip39-standalone.html` from
-[the releases](https://github.com/iancoleman/bip39/releases).
+[the releases](https://github.com/buidler-labs/citadel-key-recovery/releases).
 
 Open the file in a browser by double clicking it.
 
