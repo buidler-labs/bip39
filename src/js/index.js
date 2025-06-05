@@ -1533,6 +1533,47 @@
                     pubkey = elaAddress.publicKey;
                 }
 
+
+                if (networks[DOM.network.val()].name == "HBAR - Hedera") {
+                    const purpose = parseIntNoNaN(DOM.bip44purpose.val(), 44);
+                    const coin = parseIntNoNaN(DOM.bip44coin.val(), 3030);
+                    const account = parseIntNoNaN(DOM.bip44account.val(), 0);
+                    const change = parseIntNoNaN(DOM.bip44change.val(), 0);
+                    const path = `m/${purpose}'/${coin}'/${account}'/${change}'/${index}'`;
+
+                    var pubkeyBuffer = keyPair.getPublicKeyBuffer();
+                    var ethPubkey = libs.ethUtil.importPublic(pubkeyBuffer);
+                    var addressBuffer = libs.ethUtil.publicToAddress(ethPubkey);
+                    var hexAddress = addressBuffer.toString('hex');
+                    var checksumAddress = libs.ethUtil.toChecksumAddress(hexAddress);
+                    indexText = path;
+                    address = libs.ethUtil.addHexPrefix(checksumAddress);
+                    pubkey = libs.ethUtil.addHexPrefix(pubkey);
+                    if (hasPrivkey) {
+                        privkey = libs.ethUtil.bufferToHex(keyPair.d.toBuffer(32));
+                    }
+              
+                    //TODO: this is for ED25519
+                    // we can implement a button in UI to specify the account type
+
+                    // const { key, pubKey } = libs.hederaUtil.getKeypair(path, seed);
+                
+                    // const privHex = HederaBufferToPrivate(key);  
+                    // const pubHex = HederaBufferToPublic(pubKey);  
+                
+                    // address = pubHex;
+                    // pubkey = pubHex;
+                    // privkey = privHex;
+                    // indexText = path;
+              
+                    addAddressToList(indexText, address, pubkey, privkey);
+                    if (isLast) {
+                        hidePending();
+                        updateCsv();
+                    }
+                    return;
+                }
+
                 addAddressToList(indexText, address, pubkey, privkey);
                 if (isLast) {
                     hidePending();
@@ -3742,7 +3783,14 @@
                 network = libs.bitcoin.networks.bitcoin;
                 setHdCoin(559);
             },
-        }
+              },
+        {
+            name: "HBAR - Hedera",
+            onSelect: function() {
+                network = libs.bitcoin.networks.bitcoin;
+                setHdCoin(3030);
+            },
+        },
     ]
 
     var clients = [

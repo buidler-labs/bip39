@@ -167,3 +167,14 @@ catch (e) {
     console.warn(e);
 };
 
+/* hedera-util */
+module.exports.hederaUtil = {
+    getKeypair: function (path, seedHex) {
+        const seed = Buffer.from(seedHex, 'hex');
+        
+        const { key }  = edHd.derivePath(path, seed);
+        const pubKey = edHd.getPublicKey(key);
+        return {key, pubKey};
+    }
+};
+
